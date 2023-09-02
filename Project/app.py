@@ -8,6 +8,7 @@ import numpy as np
 from flask import Flask,request,render_template
 import pickle
 import requests, json
+from selenium.webdriver.chrome.options import Options
 import csv
 import requests
 from bs4 import BeautifulSoup
@@ -105,14 +106,13 @@ def predict():
      
     # initialize Nominatim API
     geolocator = Nominatim(user_agent="Your_Project")
-    from selenium.webdriver.chrome.options import Options
+    
 
 # Configure Chrome options
     chrome_options = Options()
     chrome_options.headless = True
-
-    PATH_TO_DRIVER = "C:\Program Files (x86)\chromedriver.exe"
-    driver = webdriver.Chrome(PATH_TO_DRIVER)
+    
+    driver =webdriver.Chrome()
     driver.get("https://en.climate-data.org/search/?q="+city_name)
 
     search_results = driver.find_element("class name", "search_results")
